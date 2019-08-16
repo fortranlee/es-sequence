@@ -10,19 +10,20 @@ var _client,
     _cache = {},
     _cacheSize,
     _cacheFillPromise = null,
-    _options = { esIndex: 'sequences', esType: 'sequence' },
+    _options = { esIndex: 'sequences', esType: '_doc' },
     _internalOptions = {
       esIndexConfig: {
         settings: {
           number_of_shards     : 1,
-          auto_expand_replicas : '0-all'
+          number_of_replicas   : 1
+          //auto_expand_replicas : '0-all'
         },
         mappings: {}
       },
       esTypeMapping: {
         _source : { enabled : false },
         _all    : { enabled : false },
-        _type   : { index : 'no' },
+        //_type   : { index : 'no' },
         enabled : false
       }
     };
@@ -112,7 +113,7 @@ function init(client, options, cacheSize) {
 
     _client = client;
     _cache = {}; // In case init is called multiple times.
-    _cacheSize = 100;
+    _cacheSize = 1;
     _initError = null;
 
     if (_.isUndefined(cacheSize) === false) {
