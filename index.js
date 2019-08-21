@@ -72,7 +72,9 @@ function initEsIndexIfNeeded() {
   }).then(function (response) {
 
     if (response === true) {
-      return addMappingToEsIndexIfMissing();
+      // resource_already_exists_exception
+//       return addMappingToEsIndexIfMissing();
+      return;
     }
 
     var config = _.cloneDeep(_internalOptions.esIndexConfig);
