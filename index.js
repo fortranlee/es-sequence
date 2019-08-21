@@ -59,8 +59,12 @@ function addMappingToEsIndexIfMissing() {
   return _client.indices.putMapping({
     index: _options.esIndex,
     type: _options.esType,
-    ignore_conflicts: true,
+//     ignore_conflicts: true,
     body: mapping
+  }).then(function() {
+    
+  }).catch(function(error) {
+    console.log(error);
   });
 
 }
