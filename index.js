@@ -69,12 +69,10 @@ function initEsIndexIfNeeded() {
 
   return _client.indices.exists({
     index: _options.esIndex
-  }).then(function (response) {
-
+  }).then(function (error, response) {
+    // resource_already_exists_exception
     if (response === true) {
-      // resource_already_exists_exception
-//       return addMappingToEsIndexIfMissing();
-      return;
+      return addMappingToEsIndexIfMissing();
     }
 
     var config = _.cloneDeep(_internalOptions.esIndexConfig);
