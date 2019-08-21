@@ -162,9 +162,9 @@ function fillCache(sequenceName) {
     resolve(
       _client.bulk(bulkParams)
         .then(function (response) {
-          for ( var k = 0; k < response.items.length; k+=1 ) {
+          for ( var k = 0; k < response.body.items.length; k+=1 ) {
             // This is the core trick: The document's version is an auto-incrementing integer.
-            _cache[sequenceName].push(response.items[k].index._version);
+            _cache[sequenceName].push(response.body.items[k].index._version);
           }
         })
     );
