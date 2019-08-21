@@ -70,7 +70,7 @@ function initEsIndexIfNeeded() {
   return _client.indices.exists({
     index: _options.esIndex
   }).then(function (error, response) {
-    console.log(argument);
+    console.log(arguments);
     // resource_already_exists_exception
     if (response === true) {
       return addMappingToEsIndexIfMissing();
